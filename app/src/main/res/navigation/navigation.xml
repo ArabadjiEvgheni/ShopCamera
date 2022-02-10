@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/titleFragment">
+
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.shopscannerx.Ui.TitleFragment"
+        android:label="fragment_title"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="com.example.shopscannerx.Ui.TitleFragment"
+        android:label="fragment_title"
+        tools:layout="@layout/fragment_title"
+
+ />
+         <action
+            android:id="@+id/action_titleFragment_to_ScanBarcodeFragment"
+            app:destination="@id/navigation2" />
+
+    <navigation android:id="@+id/navigation2"
+        app:startDestination="@id/scan_destination">
+        <fragment
+            android:id="@+id/success_destination"
+            android:name="com.example.shopscannerx.Ui.SuccessFragment"
+            android:label="SuccessBarcodeFragment">
+
+            <argument
+                android:name="code"
+                app:argType="string" />
+
+            <action
+                android:id="@+id/success_destination_to_scan_destination"
+                app:destination="@id/scan_destination"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+
+            <action
+                android:id="@+id/action_ScanBarcodeFragment_titleFragment"
+                app:destination="@id/navigation" />
+
+        </fragment>
+        <fragment
+            android:id="@+id/scan_destination"
+            android:name="com.example.shopscannerx.ScanBarcodeFragment"
+            android:label="ScanBarcodeFragment"
+            tools:layout="@layout/fragment_scan_barcode">
+
+            <action
+                android:id="@+id/scan_destination_to_success_destination"
+                app:destination="@id/success_destination"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+            <action
+                android:id="@+id/action_ScanBarcodeFragment_titleFragment"
+                app:destination="@id/navigation" />
+
+        </fragment>
+        <action
+            android:id="@+id/action_global_titleFragment"
+            app:destination="@id/titleFragment" />
+    </navigation>
+
+</navigation>
+
+
